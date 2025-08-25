@@ -44,8 +44,7 @@ jobs:
 
       - name: Patch V8
         run: |
-          cd v8
-          # placeholder
+          ./patcher.ps1
 
       - name: Build D8
         id: build
@@ -72,7 +71,7 @@ jobs:
           gn gen $release
           ninja -C $release d8
 
-          $artifact = "d8-$env:V8_BRANCH"
+          $artifact = "d8-with-disassembler-$env:V8_BRANCH"
           Add-Content -Path $env:GITHUB_OUTPUT -Value "artifact=$artifact"
 
       - name: Cleanup Artifact
